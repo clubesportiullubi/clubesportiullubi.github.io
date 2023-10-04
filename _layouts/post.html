@@ -1,68 +1,32 @@
 ---
-layout: default_2
+layout: default
 ---
 
-<section class="section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-	<div class="blog-single mb-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-8">
-				<h3 class="mt-4 mb-2">{{page.title}}</h3>
-				<div class="post-meta text-uppercase mb-3">
-					<span class="text-color"> {{page.author}}</span>
-					<span class="text-color">/ {{page.date | date_to_long_string}}</span>
-				</div>
-				<p>{{page.excerpt | strip_html | truncatewords: "25"}}</p>
-			</div>
-		</div>
-        {% if page.post_image %}
-		<div class="blog-img position-relative mt-5 mb-5">
-			<img src="{{page.post_image | relative_url}}" alt="{{post.title}}" class="img-fluid w-100"/>
-		</div>
-        {% endif %}
-		<div class="row justify-content-center">
-			<div class="col-lg-10 mx-auto">
-				<div class="post-content">
-					{{page.content}}
-				</div>
-				<div class="row align-items-center my-5">
-					<div class="col-lg-6">
-						<div class="list-inline post-tags">
-						<div class="list-inline-item"><h5>Tags:</h5></div>
-                         {{page | tags | capitalize | replace: " ","  "}}
-						</div>
-					</div>
-					<div class="col-lg-6">
-                      {% include social_share.html %}
-					</div>
-				</div>
-				<div class="comment-form p-3 p-lg-5" >
-					<div id="disqus_thread"></div>
-                    {% include disqus_comments.html %}
-				</div>
-			</div>
-		</div>
-	</div>
-</div>	
+{% assign organiser = site.data.organisers.[page.organiser] %}
 
-		</div>
-	</div>
-</section>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-<!-- Call To action -->
-<section class="position-relative section-sm bg-extra">
-	<img src="{{'/assets/images/bg/cta-bg-2.png' | relative_url}}" alt="" class="overlay-shape">
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-lg-9 mb-5 mb-lg-0">
-				<h2 class="text-white mb-0">dizer give the smart solution for your business</h2>
-			</div>
-			<div class="col-lg-3">
-				<a href="contact.html" class="btn btn-primary">get a quote</a>	
-			</div>
-		</div>
-	</div>
-</section>
-<!-- Call To action -->
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+    {% if organiser.photo %}
+        <h3 class="post-organisers-name">By {{organiser.name}}</h3>
+    {% endif %}
+    <h2 class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</h2>
+    <h3 class="post-time">From {{ page.start_time}} to {{page.end_time }}</h3>
+  </header>
+
+  {% if organiser.photo %}
+    <div class="author" style="background-image:url({{organiser.photo}});"></div>
+  {% endif %}
+
+    <div class="post-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+    {% if organiser.email %}
+        <div>
+            <a href='mailto:{{organiser.email}}?subject=Register interest for {{page.title}} on {{ page.date | date: "%B %-d, %Y" }}&body=Hi! Im interested in your event. Can I come please?' class="button button-primary">Register Interest</a>
+        </div>
+    {% endif %}
+
+</article>
