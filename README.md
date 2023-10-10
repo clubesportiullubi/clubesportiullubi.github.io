@@ -1,39 +1,12 @@
-# Evento
+# Stylish Portolio template for Jekyll
 
-Evento is a minimal, responsive theme for Jekyll. The projects allows people, groups or companies to host and show a list future and past events.
+A Jekyll implementation of the [Stylish Portfolio](http://startbootstrap.com/template-overviews/stylish-portfolio/) template by [Start Bootstrap](http://startbootstrap.com/).
 
-### Features
+See the site in action at https://volny.github.io/stylish-portfolio-jekyll/
 
-* Clean layout
-* Responsive layout
-* Shows future and past events
-* Easy for people to add events
+## To use the Stylish Portfolio template in your project
 
----
-
-### Install and Test
-
-1. Download or clone repo `git clone git@github.com:boyney123/evento.git`
-2. Enter the folder: `cd evento/`
-4. Start Jekyll server: `jekyll serve`
-
-Access via: [http://localhost:4000](http://localhost:4000)
-
----
-
-### Demo and Download
-
-[Demo](http://evento.davidboyne.co.uk)
-
-[Download](https://github.com/boyney123/evento/archive/master.zip)
-
-### Screen Shot 1
-![Evento - free Jekyll theme](/screenshot.png)
-### Screen Shot 2
-![Evento - free Jekyll theme](/screenshot2.png)
-
----
-
-### Copyright and license
-
-It is under [the MIT license](/LICENSE).
+- Start by adding your info in `_config.yml`
+- Add as many address lines as you want. Your address will also be used to show your location on the map.
+- For the emdeded map to work you'll need to [get a key from Google Maps Embed API](https://developers.google.com/maps/documentation/embed/?hl=en)
+- In `_layouts/front.html` reorder or remove section as you prefer.
